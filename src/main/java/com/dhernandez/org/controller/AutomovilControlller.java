@@ -18,13 +18,13 @@ import com.dhernandez.org.payload.MensajeResponse;
 import com.dhernandez.org.service.AutomovilService;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("/api/v1")
 public class AutomovilControlller {
 	
 	@Autowired
 	private AutomovilService automovilService;
 	
-	@GetMapping("automoviles")
+	@GetMapping("/automoviles")
 
 	public ResponseEntity<?> findAll(){
 	  List<Automovil> getList = 	automovilService.listAll();
@@ -43,7 +43,7 @@ public class AutomovilControlller {
 		    ,HttpStatus.OK);
 	}
 	
-	@GetMapping("automovil/{id}")
+	@GetMapping("/automovil/{id}")
 	public ResponseEntity<?> findById(@PathVariable("id")Long id) {
 		Automovil automovil = automovilService.findById(id);
 		if(automovil ==null) {
@@ -75,7 +75,7 @@ public class AutomovilControlller {
 	}
 	
 	
-	@PostMapping("automovil")
+	@PostMapping("/automovil")
 	public ResponseEntity<?> save(@RequestBody AutomovilDto automovilDto) {
 		Automovil automovil = null;
 		try {
@@ -95,6 +95,7 @@ public class AutomovilControlller {
 							.kms(automovil.getKms())
 							.color(automovil.getColor())
 							.anio(automovil.getAnio())
+							.transmision(automovil.getTransmision())
 							.fechaRegistro(automovil.getFechaRegistro())
 							.modelo(automovil.getModelo())
 							.precio(automovil.getPrecio())
@@ -111,7 +112,7 @@ public class AutomovilControlller {
 	}
 	
 	
-	@PutMapping("automovil/{id}")
+	@PutMapping("/automovil/{id}")
 	public ResponseEntity<?> update(@RequestBody AutomovilDto automovilDto, @PathVariable Long id) {
 		Automovil automovilUpdate =null;
 		
@@ -156,7 +157,7 @@ public class AutomovilControlller {
 
 	}
 	
-	@DeleteMapping("automovil/{id}")
+	@DeleteMapping("/automovil/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id")Long id) {
 		 try {
 			 Automovil automovilDelete = automovilService.findById(id);
