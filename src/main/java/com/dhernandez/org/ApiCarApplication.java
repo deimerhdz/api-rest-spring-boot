@@ -9,9 +9,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.servers.Server;
 
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.web.SecurityFilterChain;
+
+
 @SpringBootApplication
 @OpenAPIDefinition(servers = {@Server(url = "/", description = "Default Server URL")})
-public class ApiCarApplication {
+public class ApiCarApplication{
 
 	public static void main(String[] args) {
 		SpringApplication.run(ApiCarApplication.class, args);
@@ -25,4 +29,16 @@ public class ApiCarApplication {
 			}
 		};
 	}
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+	    return http
+	            .csrf().disable()
+	            .authorizeHttpRequests()
+	            .anyRequest().permitAll()
+	            .and()
+	            .build();
+	}
+	
+
+
 }
