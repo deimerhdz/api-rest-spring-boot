@@ -3,7 +3,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -76,7 +75,7 @@ public class AutomovilControlller {
 	}
 	
 	
-	@PostMapping(path="/automovil",produces=MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping("/automovil")
 	public ResponseEntity<?> save(@RequestBody AutomovilDto automovilDto) {
 		Automovil automovil = null;
 		try {
@@ -100,7 +99,8 @@ public class AutomovilControlller {
 							.fechaRegistro(automovil.getFechaRegistro())
 							.modelo(automovil.getModelo())
 							.precio(automovil.getPrecio())
-							.build()),HttpStatus.CREATED);
+							.build())
+					.build(),HttpStatus.CREATED);
 			
 		} catch (DataAccessException ex) {
 			 return new ResponseEntity<>(MensajeResponse.builder()
@@ -113,7 +113,7 @@ public class AutomovilControlller {
 	}
 	
 	
-	@PutMapping(path="/automovil/{id}",produces=MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping("/automovil/{id}")
 	public ResponseEntity<?> update(@RequestBody AutomovilDto automovilDto, @PathVariable Long id) {
 		Automovil automovilUpdate =null;
 		
@@ -139,7 +139,7 @@ public class AutomovilControlller {
 								.fechaRegistro(automovilUpdate.getFechaRegistro())
 								.modelo(automovilUpdate.getModelo())
 								.precio(automovilUpdate.getPrecio())
-								.build()),HttpStatus.CREATED);
+								.build()).build(),HttpStatus.CREATED);
 			}else {
 				 return new ResponseEntity<>(MensajeResponse.builder()
 						 .mensaje("El registro que intenta actualizar no se encuentra en la base de datos")
