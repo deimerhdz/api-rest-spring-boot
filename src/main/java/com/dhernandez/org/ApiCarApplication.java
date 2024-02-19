@@ -6,7 +6,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.servers.Server;
+
 @SpringBootApplication
+@OpenAPIDefinition(servers = {@Server(url = "/", description = "Default Server URL")})
 public class ApiCarApplication {
 
 	public static void main(String[] args) {
