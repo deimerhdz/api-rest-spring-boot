@@ -85,7 +85,6 @@ public class AutomovilControlller {
 			return new ResponseEntity<>(MensajeResponse.builder()
 					.mensaje("Guardado Correctamente")
 					.object(AutomovilDto.builder()
-							.id(automovil.getId())
 							.linea(automovil.getLinea())
 							.placa(automovil.getPlaca())
 							.caja(automovil.getCaja())
